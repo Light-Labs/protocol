@@ -1,0 +1,11 @@
+Shorthand,Name,Dec,Description,Implemented
+UNKNOWN_COMMAND,RESPONSE_ERROR_UNKNOWN_COMMAND,255,"The received command byte does not relate to any known command.",true
+NOT_INITIALISED,RESPONSE_ERROR_NOT_INITIALISED,254,"The Ryder is not initialised with a wallet.",true
+MEMORY_ERROR,RESPONSE_ERROR_MEMORY_ERROR,253,"The Ryder encountered a memory error while processing the command or input.",true
+APP_DOMAIN_TOO_LONG,RESPONSE_ERROR_APP_DOMAIN_TOO_LONG,252,"The provided app domain is too long to be processed. This error code precedes the memory error code.",true
+APP_DOMAIN_INVALID,RESPONSE_ERROR_APP_DOMAIN_INVALID,251,"The app domain does not start with `http://` or `https://`.",true
+MNEMONIC_TOO_LONG,RESPONSE_ERROR_MNEMONIC_TOO_LONG,250,"The provided mnemonic phrase is too long to be processed. This error code precedes the memory error code.",true
+MNEMONIC_INVALID,RESPONSE_ERROR_MNEMONIC_INVALID,249,"The mnemonic phrase has an invalid word count or the checksum failed.",true
+GENERATE_MNEMONIC,RESPONSE_ERROR_GENERATE_MNEMONIC,248,"The Ryder could not generate a mnemonic phrase of the desired strength.",true
+INPUT_TIMEOUT,RESPONSE_ERROR_INPUT_TIMEOUT,247,"The client waited too long with sending input. (Unimplemented.)",false
+NOT_IMPLEMENTED,RESPONSE_ERROR_NOT_IMPLEMENTED,246,"Prototype response code to indicate that the current feature is still being worked on.",true
