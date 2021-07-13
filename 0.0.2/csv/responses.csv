@@ -1,9 +1,9 @@
-Shorthand,Name,Dec,Description,InitialResponse,Implemented
-OK,RESPONSE_OK,1,"Generic command ok/received.",true,true
-SEND_INPUT,RESPONSE_SEND_INPUT,2,"command received, send input.",true,true
-RESPONSE_REJECTED,RESPONSE_RESPONSE_REJECTED,3,"The user rejected the request.",false,true
-OUTPUT,RESPONSE_OUTPUT,4,"Start of output sequence.",true,true
-OUTPUT_END,RESPONSE_OUTPUT_END,5,"End of output sequence",false,true
-ESC_SEQUENCE,RESPONSE_ESC_SEQUENCE,6,"Output escape sequence.",false,true
-WAIT_USER_CONFIRM,RESPONSE_WAIT_USER_CONFIRM,10,"The user is prompted for confirmation.",true,true
-LOCKED,RESPONSE_LOCKED,11,"Device is locked, send PIN. (Unimplemented.)",,false
+Shorthand         ,Name                       ,Dec ,Description                                    ,InitialResponse ,Implemented
+OK                ,RESPONSE_OK                ,1   ,"Generic command ok/received."                 ,true            ,true
+SEND_INPUT        ,RESPONSE_SEND_INPUT        ,2   ,"command received, send input."                ,true            ,true
+RESPONSE_REJECTED ,RESPONSE_RESPONSE_REJECTED ,3   ,"The user rejected the request."               ,false           ,true
+OUTPUT            ,RESPONSE_OUTPUT            ,4   ,"Start of output sequence."                    ,true            ,true
+OUTPUT_END        ,RESPONSE_OUTPUT_END        ,5   ,"End of output sequence"                       ,false           ,true
+ESC_SEQUENCE      ,RESPONSE_ESC_SEQUENCE      ,6   ,"Output escape sequence."                      ,false           ,true
+WAIT_USER_CONFIRM ,RESPONSE_WAIT_USER_CONFIRM ,10  ,"The user is prompted for confirmation."       ,true            ,true
+LOCKED            ,RESPONSE_LOCKED            ,11  ,"Device is locked, send PIN. (Unimplemented.)" ,                ,false
