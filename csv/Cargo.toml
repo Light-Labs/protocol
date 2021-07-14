@@ -9,3 +9,5 @@ edition = "2018"
 csv = "1.1.6"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+fehler = "1.0.0"
+stable-eyre = "0.2.2"

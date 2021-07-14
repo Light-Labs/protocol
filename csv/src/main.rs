@@ -1,11 +1,15 @@
-use std::path::{Path, PathBuf};
+use std::{
+    fs::File,
+    path::{Path, PathBuf},
+};
 
-use serde::{Deserialize, Serialize};
+use fehler::throws;
+use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use stable_eyre::eyre::{Error, WrapErr};
 
-type Result<T, E = Box<dyn std::error::Error>> = std::result::Result<T, E>;
-
-trait FromCsv<T> {
-    fn from_csv<P: AsRef<Path>>(path: P) -> Result<Vec<T>>;
+trait FromCsv: Sized {
+    #[throws]
+    fn from_csv<P: AsRef<Path>>(path: P) -> Vec<Self>;
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -46,39 +50,19 @@ struct Command {
     temporary: bool,
 }
 
-impl FromCsv<Response> for Response {
-    fn from_csv<P: AsRef<Path>>(path: P) -> Result<Vec<Self>> {
+impl<T> FromCsv for T
+where
+    T: DeserializeOwned,
+{
+    #[throws]
+    fn from_csv<P: AsRef<Path>>(path: P) -> Vec<Self> {
         let mut rdr = csv::ReaderBuilder::new().from_path(path)?;
         let mut results = vec![];
         for result in rdr.deserialize() {
             let record: Self = result?;
             results.push(record);
         }
-        Ok(results)
-    }
-}
-
-impl FromCsv<ErrorResponse> for ErrorResponse {
-    fn from_csv<P: AsRef<Path>>(path: P) -> Result<Vec<Self>> {
-        let mut rdr = csv::ReaderBuilder::new().from_path(path)?;
-        let mut results = vec![];
-        for result in rdr.deserialize() {
-            let record: Self = result?;
-            results.push(record);
-        }
-        Ok(results)
-    }
-}
-
-impl FromCsv<Command> for Command {
-    fn from_csv<P: AsRef<Path>>(path: P) -> Result<Vec<Self>> {
-        let mut rdr = csv::ReaderBuilder::new().from_path(path)?;
-        let mut results = vec![];
-        for result in rdr.deserialize() {
-            let record: Self = result?;
-            results.push(record);
-        }
-        Ok(results)
+        results
     }
 }
 
@@ -90,21 +74,32 @@ struct RyderProtocol {
 }
 
 impl RyderProtocol {
-    fn from_path(base_directory: PathBuf) -> Result<Self> {
-        let commands = Command::from_csv(base_directory.join("commands.csv"))?;
-        let errors = ErrorResponse::from_csv(base_directory.join("error_responses.csv"))?;
-        let responses = Response::from_csv(base_directory.join("responses.csv"))?;
-        Ok(Self {
+    #[throws]
+    fn from_path(base_directory: PathBuf) -> Self {
+        let commands = FromCsv::from_csv(base_directory.join("commands.csv"))?;
+        let errors = FromCsv::from_csv(base_directory.join("error_responses.csv"))?;
+        let responses = FromCsv::from_csv(base_directory.join("responses.csv"))?;
+
+        Self {
             commands,
             errors,
             responses,
-        })
+        }
     }
 }
 
+#[throws]
+fn run(base_directory: PathBuf) {
+    let protocol = RyderProtocol::from_path(base_directory.to_path_buf())?;
+    let path = base_directory.join("v.json");
+    let mut f =
+        File::create(&path).wrap_err_with(|| format!("Unable to create file {:?}", &path))?;
+    serde_json::to_writer_pretty(&mut f, &protocol)?;
+    println!("Wrote {:?}", &path);
+}
+
+#[throws]
 fn main() {
     // navigate to `protocol/csv/` and run `cargo run -- ../0.0.2/csv`
-    let base_directory: PathBuf = std::env::args_os().nth(1).unwrap().into();
-    let protocol = RyderProtocol::from_path(base_directory).unwrap();
-    println!("{:#?}", protocol);
+    run(std::env::args_os().nth(1).unwrap().into())?;
 }
