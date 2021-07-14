@@ -1,10 +1,14 @@
-use serde::Deserialize;
+use std::path::{Path, PathBuf};
+
+use serde::{Deserialize, Serialize};
+
+type Result<T, E = Box<dyn std::error::Error>> = std::result::Result<T, E>;
 
 trait FromCsv<T> {
-    fn from_csv<P: AsRef<std::path::Path>>(path: P) -> Result<Vec<T>, Box<dyn std::error::Error>>;
+    fn from_csv<P: AsRef<Path>>(path: P) -> Result<Vec<T>>;
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Response {
     prefix: String,
     name: String,
@@ -17,7 +21,7 @@ struct Response {
     initial_response: Option<bool>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct ErrorResponse {
     prefix: String,
     name: String,
@@ -26,7 +30,7 @@ struct ErrorResponse {
     implemented: Option<bool>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Command {
     prefix: String,
     name: String,
@@ -43,9 +47,7 @@ struct Command {
 }
 
 impl FromCsv<Response> for Response {
-    fn from_csv<P: AsRef<std::path::Path>>(
-        path: P,
-    ) -> Result<Vec<Self>, Box<dyn std::error::Error>> {
+    fn from_csv<P: AsRef<Path>>(path: P) -> Result<Vec<Self>> {
         let mut rdr = csv::ReaderBuilder::new().from_path(path)?;
         let mut results = vec![];
         for result in rdr.deserialize() {
@@ -57,9 +59,7 @@ impl FromCsv<Response> for Response {
 }
 
 impl FromCsv<ErrorResponse> for ErrorResponse {
-    fn from_csv<P: AsRef<std::path::Path>>(
-        path: P,
-    ) -> Result<Vec<Self>, Box<dyn std::error::Error>> {
+    fn from_csv<P: AsRef<Path>>(path: P) -> Result<Vec<Self>> {
         let mut rdr = csv::ReaderBuilder::new().from_path(path)?;
         let mut results = vec![];
         for result in rdr.deserialize() {
@@ -71,9 +71,7 @@ impl FromCsv<ErrorResponse> for ErrorResponse {
 }
 
 impl FromCsv<Command> for Command {
-    fn from_csv<P: AsRef<std::path::Path>>(
-        path: P,
-    ) -> Result<Vec<Self>, Box<dyn std::error::Error>> {
+    fn from_csv<P: AsRef<Path>>(path: P) -> Result<Vec<Self>> {
         let mut rdr = csv::ReaderBuilder::new().from_path(path)?;
         let mut results = vec![];
         for result in rdr.deserialize() {
@@ -84,13 +82,29 @@ impl FromCsv<Command> for Command {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+struct RyderProtocol {
+    commands: Vec<Command>,
+    errors: Vec<ErrorResponse>,
+    responses: Vec<Response>,
+}
+
+impl RyderProtocol {
+    fn from_path(base_directory: PathBuf) -> Result<Self> {
+        let commands = Command::from_csv(base_directory.join("commands.csv"))?;
+        let errors = ErrorResponse::from_csv(base_directory.join("error_responses.csv"))?;
+        let responses = Response::from_csv(base_directory.join("responses.csv"))?;
+        Ok(Self {
+            commands,
+            errors,
+            responses,
+        })
+    }
+}
+
 fn main() {
     // navigate to `protocol/csv/` and run `cargo run -- ../0.0.2/csv`
-    let base_directory: std::path::PathBuf = std::env::args_os().nth(1).unwrap().into();
-    let commands = Command::from_csv(base_directory.join("commands.csv")).unwrap();
-    let errors = ErrorResponse::from_csv(base_directory.join("error_responses.csv")).unwrap();
-    let responses = Response::from_csv(base_directory.join("responses.csv")).unwrap();
-    println!("{:#?}", commands);
-    println!("{:#?}", responses);
-    println!("{:#?}", errors);
+    let base_directory: PathBuf = std::env::args_os().nth(1).unwrap().into();
+    let protocol = RyderProtocol::from_path(base_directory).unwrap();
+    println!("{:#?}", protocol);
 }
