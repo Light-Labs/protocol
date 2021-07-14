@@ -31,12 +31,6 @@ struct Response {
     initial_response: Option<bool>,
 }
 
-impl ProtocolEntry for Response {
-    fn key(&self) -> String {
-        self.shorthand.to_owned()
-    }
-}
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct ErrorResponse {
     shorthand: String,
@@ -44,12 +38,6 @@ struct ErrorResponse {
     dec: u8,
     description: String,
     implemented: Option<bool>,
-}
-
-impl ProtocolEntry for ErrorResponse {
-    fn key(&self) -> String {
-        self.shorthand.to_owned()
-    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -68,12 +56,6 @@ struct Command {
     temporary: bool,
 }
 
-impl ProtocolEntry for Command {
-    fn key(&self) -> String {
-        self.shorthand.to_owned()
-    }
-}
-
 impl<T> FromCsv for T
 where
     T: DeserializeOwned,
@@ -87,6 +69,22 @@ where
             results.push(record);
         }
         results
+    }
+}
+
+impl ProtocolEntry for Response {
+    fn key(&self) -> String {
+        self.shorthand.to_owned()
+    }
+}
+impl ProtocolEntry for ErrorResponse {
+    fn key(&self) -> String {
+        self.shorthand.to_owned()
+    }
+}
+impl ProtocolEntry for Command {
+    fn key(&self) -> String {
+        self.shorthand.to_owned()
     }
 }
 
@@ -106,7 +104,6 @@ impl<V: ProtocolEntry> FromIterator<ImplProto<V>> for HashMap<String, V> {
         T: IntoIterator<Item = ImplProto<V>>,
     {
         let mut commands: HashMap<String, V> = HashMap::new();
-
         for ImplProto(key, value) in iter {
             commands.insert(key, value);
         }
@@ -154,15 +151,19 @@ impl RyderProtocol {
 }
 
 #[throws]
-fn run(version_number: &str) {
-    let base_directory: PathBuf = format!("../{}", &version_number).into();
-    let protocol = RyderProtocol::from_path(base_directory.to_path_buf())?;
-    let path = base_directory.join(format!("{}.json", &version_number));
-
+fn write_schema_json(protocol: &RyderProtocol, path: PathBuf) {
     let mut f =
         File::create(&path).wrap_err_with(|| format!("Unable to create file {:?}", &path))?;
     serde_json::to_writer_pretty(&mut f, &protocol)?;
     println!("Wrote {:?}", &path);
+}
+
+#[throws]
+fn run(version_number: &str) {
+    let base_directory: PathBuf = format!("../{}", &version_number).into();
+    let protocol = RyderProtocol::from_path(base_directory.to_path_buf())?;
+    let path = base_directory.join(format!("{}.json", &version_number));
+    write_schema_json(&protocol, path)?;
 }
 
 #[throws]
