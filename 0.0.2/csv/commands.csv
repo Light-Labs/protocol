@@ -1,18 +1,18 @@
-name,shorthand,dec,description,user_confirm,send_input,implemented,enabled,temporary
-COMMAND_WAKE,WAKE,1,"Wake the Ryder from (deep) sleep.",false,false,true,true,false
-COMMAND_INFO,INFO,2,"Retrieve basic information about the Ryder.",false,false,true,true,false
-COMMAND_UNLOCK,UNLOCK,3,"Request unlock. (Unimplemented.)",,,false,false,false
-COMMAND_SETUP,SETUP,10,"Trigger wallet setup flow.",true,false,true,true,false
-COMMAND_RESTORE_FROM_SEED,RESTORE_FROM_SEED,11,"Trigger restore mode via seed input. (Unimplemented.)",,,false,,false
-COMMAND_RESTORE_FROM_MNEMONIC,RESTORE_FROM_MNEMONIC,12,"Trigger restore mode via mnemonic phrase input.",true,true,true,true,false
-COMMAND_ERASE,ERASE,13,"Trigger erase mode.",true,false,true,true,false
-COMMAND_EXPORT_OWNER_KEY,EXPORT_OWNER_KEY,18,"Request owner public key export. (Disabled.)",,,,false,false
-COMMAND_EXPORT_OWNER_KEY_PRIVATE_KEY,EXPORT_OWNER_KEY_PRIVATE_KEY,19,"Request owner private key export. (Temporary prototype command, disabled.)",,,,false,false
-COMMAND_EXPORT_APP_KEY,EXPORT_APP_KEY,20,"Request app public key export.",true,true,true,true,false
-COMMAND_EXPORT_APP_KEY_PRIVATE_KEY,EXPORT_APP_KEY_PRIVATE_KEY,21,"Request app private key export.",true,true,true,true,false
-COMMAND_EXPORT_OWNER_APP_KEY_PRIVATE_KEY,EXPORT_OWNER_APP_KEY_PRIVATE_KEY,23,"Request owner private key and app private key. (Temporary prototype command for Stacks auth flow compatibility.)",true,true,true,true,true
-COMMAND_EXPORT_PUBLIC_IDENTITIES,EXPORT_PUBLIC_IDENTITIES,30,"Export a series of public identities. (Unimplemented.)",,,false,false,false
-COMMAND_EXPORT_PUBLIC_IDENTITY,EXPORT_PUBLIC_IDENTITY,31,"Export a specific public identity.",false,true,true,true,false
-COMMAND_START_ENCRYPT,START_ENCRYPT,40,"Enter encryption mode. (Disabled.)",,,,false,false
-COMMAND_START_DECRYPT,START_DECRYPT,41,"Enter decryption mode. (Disabled.)",,,,false,false
-COMMAND_CANCEL,CANCEL,100,"Cancel a user prompt.",false,false,true,true,false
+shorthand                        ,name                                     ,dec ,description                                                                                                        ,user_confirm ,send_input ,implemented ,enabled ,temporary
+WAKE                             ,COMMAND_WAKE                             ,1   ,"Wake the Ryder from (deep) sleep."                                                                                ,false        ,false      ,true        ,true    ,false
+INFO                             ,COMMAND_INFO                             ,2   ,"Retrieve basic information about the Ryder."                                                                      ,false        ,false      ,true        ,true    ,false
+UNLOCK                           ,COMMAND_UNLOCK                           ,3   ,"Request unlock. (Unimplemented.)"                                                                                 ,             ,           ,false       ,false   ,false
+SETUP                            ,COMMAND_SETUP                            ,10  ,"Trigger wallet setup flow."                                                                                       ,true         ,false      ,true        ,true    ,false
+RESTORE_FROM_SEED                ,COMMAND_RESTORE_FROM_SEED                ,11  ,"Trigger restore mode via seed input. (Unimplemented.)"                                                            ,             ,           ,false       ,        ,false
+RESTORE_FROM_MNEMONIC            ,COMMAND_RESTORE_FROM_MNEMONIC            ,12  ,"Trigger restore mode via mnemonic phrase input."                                                                  ,true         ,true       ,true        ,true    ,false
+ERASE                            ,COMMAND_ERASE                            ,13  ,"Trigger erase mode."                                                                                              ,true         ,false      ,true        ,true    ,false
+EXPORT_OWNER_KEY                 ,COMMAND_EXPORT_OWNER_KEY                 ,18  ,"Request owner public key export. (Disabled.)"                                                                     ,             ,           ,            ,false   ,false
+EXPORT_OWNER_KEY_PRIVATE_KEY     ,COMMAND_EXPORT_OWNER_KEY_PRIVATE_KEY     ,19  ,"Request owner private key export. (Temporary prototype command, disabled.)"                                       ,             ,           ,            ,false   ,false
+EXPORT_APP_KEY                   ,COMMAND_EXPORT_APP_KEY                   ,20  ,"Request app public key export."                                                                                   ,true         ,true       ,true        ,true    ,false
+EXPORT_APP_KEY_PRIVATE_KEY       ,COMMAND_EXPORT_APP_KEY_PRIVATE_KEY       ,21  ,"Request app private key export."                                                                                  ,true         ,true       ,true        ,true    ,false
+EXPORT_OWNER_APP_KEY_PRIVATE_KEY ,COMMAND_EXPORT_OWNER_APP_KEY_PRIVATE_KEY ,23  ,"Request owner private key and app private key. (Temporary prototype command for Stacks auth flow compatibility.)" ,true         ,true       ,true        ,true    ,true
+EXPORT_PUBLIC_IDENTITIES         ,COMMAND_EXPORT_PUBLIC_IDENTITIES         ,30  ,"Export a series of public identities. (Unimplemented.)"                                                           ,             ,           ,false       ,false   ,false
+EXPORT_PUBLIC_IDENTITY           ,COMMAND_EXPORT_PUBLIC_IDENTITY           ,31  ,"Export a specific public identity."                                                                               ,false        ,true       ,true        ,true    ,false
+START_ENCRYPT                    ,COMMAND_START_ENCRYPT                    ,40  ,"Enter encryption mode. (Disabled.)"                                                                               ,             ,           ,            ,false   ,false
+START_DECRYPT                    ,COMMAND_START_DECRYPT                    ,41  ,"Enter decryption mode. (Disabled.)"                                                                               ,             ,           ,            ,false   ,false
+CANCEL                           ,COMMAND_CANCEL                           ,100 ,"Cancel a user prompt."                                                                                            ,false        ,false      ,true        ,true    ,false
