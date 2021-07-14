@@ -1,0 +1,13 @@
+[package]
+name = "csv"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+csv = "1.1.6"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+fehler = "1.0.0"
+stable-eyre = "0.2.2"

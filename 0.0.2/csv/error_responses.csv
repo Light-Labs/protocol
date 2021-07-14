@@ -1,4 +1,4 @@
-Shorthand           ,Name                               ,Dec ,Description                                                                                                 ,Implemented
+shorthand           ,name                               ,dec ,description                                                                                                 ,implemented
 UNKNOWN_COMMAND     ,RESPONSE_ERROR_UNKNOWN_COMMAND     ,255 ,"The received command byte does not relate to any known command."                                           ,true
 NOT_INITIALISED     ,RESPONSE_ERROR_NOT_INITIALISED     ,254 ,"The Ryder is not initialised with a wallet."                                                               ,true
 MEMORY_ERROR        ,RESPONSE_ERROR_MEMORY_ERROR        ,253 ,"The Ryder encountered a memory error while processing the command or input."                               ,true
