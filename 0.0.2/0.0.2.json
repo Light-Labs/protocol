@@ -1,621 +1,656 @@
 {
   "commands": {
-    "WAKE": {
-      "Name": "COMMAND_WAKE",
-      "Dec": 1,
-      "Description": "Wake the Ryder from (deep) sleep.",
-      "UserConfirm": false,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
-    },
-    "INFO": {
-      "Name": "COMMAND_INFO",
-      "Dec": 2,
-      "Description": "Retrieve basic information about the Ryder.",
-      "UserConfirm": false,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
-    },
-    "UNLOCK": {
-      "Name": "COMMAND_UNLOCK",
-      "Dec": 3,
-      "Description": "Request unlock. (Unimplemented.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": false,
-      "Enabled": false,
-      "Temporary": false
-    },
-    "SETUP": {
-      "Name": "COMMAND_SETUP",
-      "Dec": 10,
-      "Description": "Trigger wallet setup flow.",
-      "UserConfirm": true,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
-    },
-    "RESTORE_FROM_SEED": {
-      "Name": "COMMAND_RESTORE_FROM_SEED",
-      "Dec": 11,
-      "Description": "Trigger restore mode via seed input. (Unimplemented.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": false,
-      "Enabled": null,
-      "Temporary": false
-    },
     "RESTORE_FROM_MNEMONIC": {
-      "Name": "COMMAND_RESTORE_FROM_MNEMONIC",
-      "Dec": 12,
-      "Description": "Trigger restore mode via mnemonic phrase input.",
-      "UserConfirm": true,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
-    },
-    "ERASE": {
-      "Name": "COMMAND_ERASE",
-      "Dec": 13,
-      "Description": "Trigger erase mode.",
-      "UserConfirm": true,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
-    },
-    "EXPORT_OWNER_KEY": {
-      "Name": "COMMAND_EXPORT_OWNER_KEY",
-      "Dec": 18,
-      "Description": "Request owner public key export. (Disabled.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": null,
-      "Enabled": false,
-      "Temporary": false
-    },
-    "EXPORT_OWNER_KEY_PRIVATE_KEY": {
-      "Name": "COMMAND_EXPORT_OWNER_KEY_PRIVATE_KEY",
-      "Dec": 19,
-      "Description": "Request owner private key export. (Temporary prototype command, disabled.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": null,
-      "Enabled": false,
-      "Temporary": false
-    },
-    "EXPORT_APP_KEY": {
-      "Name": "COMMAND_EXPORT_APP_KEY",
-      "Dec": 20,
-      "Description": "Request app public key export.",
-      "UserConfirm": true,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
-    },
-    "EXPORT_APP_KEY_PRIVATE_KEY": {
-      "Name": "COMMAND_EXPORT_APP_KEY_PRIVATE_KEY",
-      "Dec": 21,
-      "Description": "Request app private key export.",
-      "UserConfirm": true,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
-    },
-    "EXPORT_OWNER_APP_KEY_PRIVATE_KEY": {
-      "Name": "COMMAND_EXPORT_OWNER_APP_KEY_PRIVATE_KEY",
-      "Dec": 23,
-      "Description": "Request owner private key and app private key. (Temporary prototype command for Stacks auth flow compatibility.)",
-      "UserConfirm": true,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": true
-    },
-    "EXPORT_PUBLIC_IDENTITIES": {
-      "Name": "COMMAND_EXPORT_PUBLIC_IDENTITIES",
-      "Dec": 30,
-      "Description": "Export a series of public identities. (Unimplemented.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": false,
-      "Enabled": false,
-      "Temporary": false
+      "shorthand": "RESTORE_FROM_MNEMONIC",
+      "name": "COMMAND_RESTORE_FROM_MNEMONIC",
+      "dec": 12,
+      "description": "Trigger restore mode via mnemonic phrase input.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": true,
+      "enabled": true,
+      "temporary": false
     },
     "EXPORT_PUBLIC_IDENTITY": {
-      "Name": "COMMAND_EXPORT_PUBLIC_IDENTITY",
-      "Dec": 31,
-      "Description": "Export a specific public identity.",
-      "UserConfirm": false,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "EXPORT_PUBLIC_IDENTITY",
+      "name": "COMMAND_EXPORT_PUBLIC_IDENTITY",
+      "dec": 31,
+      "description": "Export a specific public identity.",
+      "implemented": true,
+      "user_confirm": false,
+      "send_input": true,
+      "enabled": true,
+      "temporary": false
     },
-    "START_ENCRYPT": {
-      "Name": "COMMAND_START_ENCRYPT",
-      "Dec": 40,
-      "Description": "Enter encryption mode. (Disabled.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": null,
-      "Enabled": false,
-      "Temporary": false
+    "UNLOCK": {
+      "shorthand": "UNLOCK",
+      "name": "COMMAND_UNLOCK",
+      "dec": 3,
+      "description": "Request unlock. (Unimplemented.)",
+      "implemented": false,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
     },
-    "START_DECRYPT": {
-      "Name": "COMMAND_START_DECRYPT",
-      "Dec": 41,
-      "Description": "Enter decryption mode. (Disabled.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": null,
-      "Enabled": false,
-      "Temporary": false
+    "EXPORT_APP_KEY": {
+      "shorthand": "EXPORT_APP_KEY",
+      "name": "COMMAND_EXPORT_APP_KEY",
+      "dec": 20,
+      "description": "Request app public key export.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": true,
+      "enabled": true,
+      "temporary": false
+    },
+    "ERASE": {
+      "shorthand": "ERASE",
+      "name": "COMMAND_ERASE",
+      "dec": 13,
+      "description": "Trigger erase mode.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
+    },
+    "EXPORT_OWNER_APP_KEY_PRIVATE_KEY": {
+      "shorthand": "EXPORT_OWNER_APP_KEY_PRIVATE_KEY",
+      "name": "COMMAND_EXPORT_OWNER_APP_KEY_PRIVATE_KEY",
+      "dec": 23,
+      "description": "Request owner private key and app private key. (Temporary prototype command for Stacks auth flow compatibility.)",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": true,
+      "enabled": true,
+      "temporary": true
+    },
+    "INFO": {
+      "shorthand": "INFO",
+      "name": "COMMAND_INFO",
+      "dec": 2,
+      "description": "Retrieve basic information about the Ryder.",
+      "implemented": true,
+      "user_confirm": false,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
     },
     "CANCEL": {
-      "Name": "COMMAND_CANCEL",
-      "Dec": 100,
-      "Description": "Cancel a user prompt.",
-      "UserConfirm": false,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "CANCEL",
+      "name": "COMMAND_CANCEL",
+      "dec": 100,
+      "description": "Cancel a user prompt.",
+      "implemented": true,
+      "user_confirm": false,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
+    },
+    "EXPORT_APP_KEY_PRIVATE_KEY": {
+      "shorthand": "EXPORT_APP_KEY_PRIVATE_KEY",
+      "name": "COMMAND_EXPORT_APP_KEY_PRIVATE_KEY",
+      "dec": 21,
+      "description": "Request app private key export.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": true,
+      "enabled": true,
+      "temporary": false
+    },
+    "EXPORT_OWNER_KEY_PRIVATE_KEY": {
+      "shorthand": "EXPORT_OWNER_KEY_PRIVATE_KEY",
+      "name": "COMMAND_EXPORT_OWNER_KEY_PRIVATE_KEY",
+      "dec": 19,
+      "description": "Request owner private key export. (Temporary prototype command, disabled.)",
+      "implemented": null,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
+    },
+    "SETUP": {
+      "shorthand": "SETUP",
+      "name": "COMMAND_SETUP",
+      "dec": 10,
+      "description": "Trigger wallet setup flow.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
+    },
+    "EXPORT_OWNER_KEY": {
+      "shorthand": "EXPORT_OWNER_KEY",
+      "name": "COMMAND_EXPORT_OWNER_KEY",
+      "dec": 18,
+      "description": "Request owner public key export. (Disabled.)",
+      "implemented": null,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
+    },
+    "START_ENCRYPT": {
+      "shorthand": "START_ENCRYPT",
+      "name": "COMMAND_START_ENCRYPT",
+      "dec": 40,
+      "description": "Enter encryption mode. (Disabled.)",
+      "implemented": null,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
+    },
+    "EXPORT_PUBLIC_IDENTITIES": {
+      "shorthand": "EXPORT_PUBLIC_IDENTITIES",
+      "name": "COMMAND_EXPORT_PUBLIC_IDENTITIES",
+      "dec": 30,
+      "description": "Export a series of public identities. (Unimplemented.)",
+      "implemented": false,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
+    },
+    "START_DECRYPT": {
+      "shorthand": "START_DECRYPT",
+      "name": "COMMAND_START_DECRYPT",
+      "dec": 41,
+      "description": "Enter decryption mode. (Disabled.)",
+      "implemented": null,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
+    },
+    "WAKE": {
+      "shorthand": "WAKE",
+      "name": "COMMAND_WAKE",
+      "dec": 1,
+      "description": "Wake the Ryder from (deep) sleep.",
+      "implemented": true,
+      "user_confirm": false,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
+    },
+    "RESTORE_FROM_SEED": {
+      "shorthand": "RESTORE_FROM_SEED",
+      "name": "COMMAND_RESTORE_FROM_SEED",
+      "dec": 11,
+      "description": "Trigger restore mode via seed input. (Unimplemented.)",
+      "implemented": false,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": null,
+      "temporary": false
     }
   },
   "commands_list": [
     {
-      "Shorthand": "WAKE",
-      "Name": "COMMAND_WAKE",
-      "Dec": 1,
-      "Description": "Wake the Ryder from (deep) sleep.",
-      "UserConfirm": false,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "WAKE",
+      "name": "COMMAND_WAKE",
+      "dec": 1,
+      "description": "Wake the Ryder from (deep) sleep.",
+      "implemented": true,
+      "user_confirm": false,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
     },
     {
-      "Shorthand": "INFO",
-      "Name": "COMMAND_INFO",
-      "Dec": 2,
-      "Description": "Retrieve basic information about the Ryder.",
-      "UserConfirm": false,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "INFO",
+      "name": "COMMAND_INFO",
+      "dec": 2,
+      "description": "Retrieve basic information about the Ryder.",
+      "implemented": true,
+      "user_confirm": false,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
     },
     {
-      "Shorthand": "UNLOCK",
-      "Name": "COMMAND_UNLOCK",
-      "Dec": 3,
-      "Description": "Request unlock. (Unimplemented.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": false,
-      "Enabled": false,
-      "Temporary": false
+      "shorthand": "UNLOCK",
+      "name": "COMMAND_UNLOCK",
+      "dec": 3,
+      "description": "Request unlock. (Unimplemented.)",
+      "implemented": false,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
     },
     {
-      "Shorthand": "SETUP",
-      "Name": "COMMAND_SETUP",
-      "Dec": 10,
-      "Description": "Trigger wallet setup flow.",
-      "UserConfirm": true,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "SETUP",
+      "name": "COMMAND_SETUP",
+      "dec": 10,
+      "description": "Trigger wallet setup flow.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
     },
     {
-      "Shorthand": "RESTORE_FROM_SEED",
-      "Name": "COMMAND_RESTORE_FROM_SEED",
-      "Dec": 11,
-      "Description": "Trigger restore mode via seed input. (Unimplemented.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": false,
-      "Enabled": null,
-      "Temporary": false
+      "shorthand": "RESTORE_FROM_SEED",
+      "name": "COMMAND_RESTORE_FROM_SEED",
+      "dec": 11,
+      "description": "Trigger restore mode via seed input. (Unimplemented.)",
+      "implemented": false,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": null,
+      "temporary": false
     },
     {
-      "Shorthand": "RESTORE_FROM_MNEMONIC",
-      "Name": "COMMAND_RESTORE_FROM_MNEMONIC",
-      "Dec": 12,
-      "Description": "Trigger restore mode via mnemonic phrase input.",
-      "UserConfirm": true,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "RESTORE_FROM_MNEMONIC",
+      "name": "COMMAND_RESTORE_FROM_MNEMONIC",
+      "dec": 12,
+      "description": "Trigger restore mode via mnemonic phrase input.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": true,
+      "enabled": true,
+      "temporary": false
     },
     {
-      "Shorthand": "ERASE",
-      "Name": "COMMAND_ERASE",
-      "Dec": 13,
-      "Description": "Trigger erase mode.",
-      "UserConfirm": true,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "ERASE",
+      "name": "COMMAND_ERASE",
+      "dec": 13,
+      "description": "Trigger erase mode.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
     },
     {
-      "Shorthand": "EXPORT_OWNER_KEY",
-      "Name": "COMMAND_EXPORT_OWNER_KEY",
-      "Dec": 18,
-      "Description": "Request owner public key export. (Disabled.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": null,
-      "Enabled": false,
-      "Temporary": false
+      "shorthand": "EXPORT_OWNER_KEY",
+      "name": "COMMAND_EXPORT_OWNER_KEY",
+      "dec": 18,
+      "description": "Request owner public key export. (Disabled.)",
+      "implemented": null,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
     },
     {
-      "Shorthand": "EXPORT_OWNER_KEY_PRIVATE_KEY",
-      "Name": "COMMAND_EXPORT_OWNER_KEY_PRIVATE_KEY",
-      "Dec": 19,
-      "Description": "Request owner private key export. (Temporary prototype command, disabled.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": null,
-      "Enabled": false,
-      "Temporary": false
+      "shorthand": "EXPORT_OWNER_KEY_PRIVATE_KEY",
+      "name": "COMMAND_EXPORT_OWNER_KEY_PRIVATE_KEY",
+      "dec": 19,
+      "description": "Request owner private key export. (Temporary prototype command, disabled.)",
+      "implemented": null,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
     },
     {
-      "Shorthand": "EXPORT_APP_KEY",
-      "Name": "COMMAND_EXPORT_APP_KEY",
-      "Dec": 20,
-      "Description": "Request app public key export.",
-      "UserConfirm": true,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "EXPORT_APP_KEY",
+      "name": "COMMAND_EXPORT_APP_KEY",
+      "dec": 20,
+      "description": "Request app public key export.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": true,
+      "enabled": true,
+      "temporary": false
     },
     {
-      "Shorthand": "EXPORT_APP_KEY_PRIVATE_KEY",
-      "Name": "COMMAND_EXPORT_APP_KEY_PRIVATE_KEY",
-      "Dec": 21,
-      "Description": "Request app private key export.",
-      "UserConfirm": true,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "EXPORT_APP_KEY_PRIVATE_KEY",
+      "name": "COMMAND_EXPORT_APP_KEY_PRIVATE_KEY",
+      "dec": 21,
+      "description": "Request app private key export.",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": true,
+      "enabled": true,
+      "temporary": false
     },
     {
-      "Shorthand": "EXPORT_OWNER_APP_KEY_PRIVATE_KEY",
-      "Name": "COMMAND_EXPORT_OWNER_APP_KEY_PRIVATE_KEY",
-      "Dec": 23,
-      "Description": "Request owner private key and app private key. (Temporary prototype command for Stacks auth flow compatibility.)",
-      "UserConfirm": true,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": true
+      "shorthand": "EXPORT_OWNER_APP_KEY_PRIVATE_KEY",
+      "name": "COMMAND_EXPORT_OWNER_APP_KEY_PRIVATE_KEY",
+      "dec": 23,
+      "description": "Request owner private key and app private key. (Temporary prototype command for Stacks auth flow compatibility.)",
+      "implemented": true,
+      "user_confirm": true,
+      "send_input": true,
+      "enabled": true,
+      "temporary": true
     },
     {
-      "Shorthand": "EXPORT_PUBLIC_IDENTITIES",
-      "Name": "COMMAND_EXPORT_PUBLIC_IDENTITIES",
-      "Dec": 30,
-      "Description": "Export a series of public identities. (Unimplemented.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": false,
-      "Enabled": false,
-      "Temporary": false
+      "shorthand": "EXPORT_PUBLIC_IDENTITIES",
+      "name": "COMMAND_EXPORT_PUBLIC_IDENTITIES",
+      "dec": 30,
+      "description": "Export a series of public identities. (Unimplemented.)",
+      "implemented": false,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
     },
     {
-      "Shorthand": "EXPORT_PUBLIC_IDENTITY",
-      "Name": "COMMAND_EXPORT_PUBLIC_IDENTITY",
-      "Dec": 31,
-      "Description": "Export a specific public identity.",
-      "UserConfirm": false,
-      "SendInput": true,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "EXPORT_PUBLIC_IDENTITY",
+      "name": "COMMAND_EXPORT_PUBLIC_IDENTITY",
+      "dec": 31,
+      "description": "Export a specific public identity.",
+      "implemented": true,
+      "user_confirm": false,
+      "send_input": true,
+      "enabled": true,
+      "temporary": false
     },
     {
-      "Shorthand": "START_ENCRYPT",
-      "Name": "COMMAND_START_ENCRYPT",
-      "Dec": 40,
-      "Description": "Enter encryption mode. (Disabled.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": null,
-      "Enabled": false,
-      "Temporary": false
+      "shorthand": "START_ENCRYPT",
+      "name": "COMMAND_START_ENCRYPT",
+      "dec": 40,
+      "description": "Enter encryption mode. (Disabled.)",
+      "implemented": null,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
     },
     {
-      "Shorthand": "START_DECRYPT",
-      "Name": "COMMAND_START_DECRYPT",
-      "Dec": 41,
-      "Description": "Enter decryption mode. (Disabled.)",
-      "UserConfirm": null,
-      "SendInput": null,
-      "Implemented": null,
-      "Enabled": false,
-      "Temporary": false
+      "shorthand": "START_DECRYPT",
+      "name": "COMMAND_START_DECRYPT",
+      "dec": 41,
+      "description": "Enter decryption mode. (Disabled.)",
+      "implemented": null,
+      "user_confirm": null,
+      "send_input": null,
+      "enabled": false,
+      "temporary": false
     },
     {
-      "Shorthand": "CANCEL",
-      "Name": "COMMAND_CANCEL",
-      "Dec": 100,
-      "Description": "Cancel a user prompt.",
-      "UserConfirm": false,
-      "SendInput": false,
-      "Implemented": true,
-      "Enabled": true,
-      "Temporary": false
+      "shorthand": "CANCEL",
+      "name": "COMMAND_CANCEL",
+      "dec": 100,
+      "description": "Cancel a user prompt.",
+      "implemented": true,
+      "user_confirm": false,
+      "send_input": false,
+      "enabled": true,
+      "temporary": false
+    }
+  ],
+  "errors": {
+    "UNKNOWN_COMMAND": {
+      "shorthand": "UNKNOWN_COMMAND",
+      "name": "RESPONSE_ERROR_UNKNOWN_COMMAND",
+      "dec": 255,
+      "description": "The received command byte does not relate to any known command.",
+      "implemented": true
+    },
+    "APP_DOMAIN_TOO_LONG": {
+      "shorthand": "APP_DOMAIN_TOO_LONG",
+      "name": "RESPONSE_ERROR_APP_DOMAIN_TOO_LONG",
+      "dec": 252,
+      "description": "The provided app domain is too long to be processed. This error code precedes the memory error code.",
+      "implemented": true
+    },
+    "NOT_INITIALISED": {
+      "shorthand": "NOT_INITIALISED",
+      "name": "RESPONSE_ERROR_NOT_INITIALISED",
+      "dec": 254,
+      "description": "The Ryder is not initialised with a wallet.",
+      "implemented": true
+    },
+    "APP_DOMAIN_INVALID": {
+      "shorthand": "APP_DOMAIN_INVALID",
+      "name": "RESPONSE_ERROR_APP_DOMAIN_INVALID",
+      "dec": 251,
+      "description": "The app domain does not start with `http://` or `https://`.",
+      "implemented": true
+    },
+    "MEMORY_ERROR": {
+      "shorthand": "MEMORY_ERROR",
+      "name": "RESPONSE_ERROR_MEMORY_ERROR",
+      "dec": 253,
+      "description": "The Ryder encountered a memory error while processing the command or input.",
+      "implemented": true
+    },
+    "MNEMONIC_INVALID": {
+      "shorthand": "MNEMONIC_INVALID",
+      "name": "RESPONSE_ERROR_MNEMONIC_INVALID",
+      "dec": 249,
+      "description": "The mnemonic phrase has an invalid word count or the checksum failed.",
+      "implemented": true
+    },
+    "GENERATE_MNEMONIC": {
+      "shorthand": "GENERATE_MNEMONIC",
+      "name": "RESPONSE_ERROR_GENERATE_MNEMONIC",
+      "dec": 248,
+      "description": "The Ryder could not generate a mnemonic phrase of the desired strength.",
+      "implemented": true
+    },
+    "INPUT_TIMEOUT": {
+      "shorthand": "INPUT_TIMEOUT",
+      "name": "RESPONSE_ERROR_INPUT_TIMEOUT",
+      "dec": 247,
+      "description": "The client waited too long with sending input. (Unimplemented.)",
+      "implemented": false
+    },
+    "NOT_IMPLEMENTED": {
+      "shorthand": "NOT_IMPLEMENTED",
+      "name": "RESPONSE_ERROR_NOT_IMPLEMENTED",
+      "dec": 246,
+      "description": "Prototype response code to indicate that the current feature is still being worked on.",
+      "implemented": true
+    },
+    "MNEMONIC_TOO_LONG": {
+      "shorthand": "MNEMONIC_TOO_LONG",
+      "name": "RESPONSE_ERROR_MNEMONIC_TOO_LONG",
+      "dec": 250,
+      "description": "The provided mnemonic phrase is too long to be processed. This error code precedes the memory error code.",
+      "implemented": true
+    }
+  },
+  "errors_list": [
+    {
+      "shorthand": "UNKNOWN_COMMAND",
+      "name": "RESPONSE_ERROR_UNKNOWN_COMMAND",
+      "dec": 255,
+      "description": "The received command byte does not relate to any known command.",
+      "implemented": true
+    },
+    {
+      "shorthand": "NOT_INITIALISED",
+      "name": "RESPONSE_ERROR_NOT_INITIALISED",
+      "dec": 254,
+      "description": "The Ryder is not initialised with a wallet.",
+      "implemented": true
+    },
+    {
+      "shorthand": "MEMORY_ERROR",
+      "name": "RESPONSE_ERROR_MEMORY_ERROR",
+      "dec": 253,
+      "description": "The Ryder encountered a memory error while processing the command or input.",
+      "implemented": true
+    },
+    {
+      "shorthand": "APP_DOMAIN_TOO_LONG",
+      "name": "RESPONSE_ERROR_APP_DOMAIN_TOO_LONG",
+      "dec": 252,
+      "description": "The provided app domain is too long to be processed. This error code precedes the memory error code.",
+      "implemented": true
+    },
+    {
+      "shorthand": "APP_DOMAIN_INVALID",
+      "name": "RESPONSE_ERROR_APP_DOMAIN_INVALID",
+      "dec": 251,
+      "description": "The app domain does not start with `http://` or `https://`.",
+      "implemented": true
+    },
+    {
+      "shorthand": "MNEMONIC_TOO_LONG",
+      "name": "RESPONSE_ERROR_MNEMONIC_TOO_LONG",
+      "dec": 250,
+      "description": "The provided mnemonic phrase is too long to be processed. This error code precedes the memory error code.",
+      "implemented": true
+    },
+    {
+      "shorthand": "MNEMONIC_INVALID",
+      "name": "RESPONSE_ERROR_MNEMONIC_INVALID",
+      "dec": 249,
+      "description": "The mnemonic phrase has an invalid word count or the checksum failed.",
+      "implemented": true
+    },
+    {
+      "shorthand": "GENERATE_MNEMONIC",
+      "name": "RESPONSE_ERROR_GENERATE_MNEMONIC",
+      "dec": 248,
+      "description": "The Ryder could not generate a mnemonic phrase of the desired strength.",
+      "implemented": true
+    },
+    {
+      "shorthand": "INPUT_TIMEOUT",
+      "name": "RESPONSE_ERROR_INPUT_TIMEOUT",
+      "dec": 247,
+      "description": "The client waited too long with sending input. (Unimplemented.)",
+      "implemented": false
+    },
+    {
+      "shorthand": "NOT_IMPLEMENTED",
+      "name": "RESPONSE_ERROR_NOT_IMPLEMENTED",
+      "dec": 246,
+      "description": "Prototype response code to indicate that the current feature is still being worked on.",
+      "implemented": true
     }
   ],
   "responses": {
-    "OK": {
-      "Name": "RESPONSE_OK",
-      "Dec": 1,
-      "Description": "Generic command ok/received.",
-      "InitialResponse": true,
-      "Implemented": true
-    },
-    "SEND_INPUT": {
-      "Name": "RESPONSE_SEND_INPUT",
-      "Dec": 2,
-      "Description": "command received, send input.",
-      "InitialResponse": true,
-      "Implemented": true
-    },
-    "RESPONSE_REJECTED": {
-      "Name": "RESPONSE_RESPONSE_REJECTED",
-      "Dec": 3,
-      "Description": "The user rejected the request.",
-      "InitialResponse": false,
-      "Implemented": true
-    },
     "OUTPUT": {
-      "Name": "RESPONSE_OUTPUT",
-      "Dec": 4,
-      "Description": "Start of output sequence.",
-      "InitialResponse": true,
-      "Implemented": true
+      "shorthand": "OUTPUT",
+      "name": "RESPONSE_OUTPUT",
+      "dec": 4,
+      "description": "Start of output sequence.",
+      "implemented": true,
+      "initial_response": true
     },
     "OUTPUT_END": {
-      "Name": "RESPONSE_OUTPUT_END",
-      "Dec": 5,
-      "Description": "End of output sequence",
-      "InitialResponse": false,
-      "Implemented": true
-    },
-    "ESC_SEQUENCE": {
-      "Name": "RESPONSE_ESC_SEQUENCE",
-      "Dec": 6,
-      "Description": "Output escape sequence.",
-      "InitialResponse": false,
-      "Implemented": true
+      "shorthand": "OUTPUT_END",
+      "name": "RESPONSE_OUTPUT_END",
+      "dec": 5,
+      "description": "End of output sequence",
+      "implemented": true,
+      "initial_response": false
     },
     "WAIT_USER_CONFIRM": {
-      "Name": "RESPONSE_WAIT_USER_CONFIRM",
-      "Dec": 10,
-      "Description": "The user is prompted for confirmation.",
-      "InitialResponse": true,
-      "Implemented": true
+      "shorthand": "WAIT_USER_CONFIRM",
+      "name": "RESPONSE_WAIT_USER_CONFIRM",
+      "dec": 10,
+      "description": "The user is prompted for confirmation.",
+      "implemented": true,
+      "initial_response": true
+    },
+    "SEND_INPUT": {
+      "shorthand": "SEND_INPUT",
+      "name": "RESPONSE_SEND_INPUT",
+      "dec": 2,
+      "description": "command received, send input.",
+      "implemented": true,
+      "initial_response": true
+    },
+    "RESPONSE_REJECTED": {
+      "shorthand": "RESPONSE_REJECTED",
+      "name": "RESPONSE_RESPONSE_REJECTED",
+      "dec": 3,
+      "description": "The user rejected the request.",
+      "implemented": true,
+      "initial_response": false
     },
     "LOCKED": {
-      "Name": "RESPONSE_LOCKED",
-      "Dec": 11,
-      "Description": "Device is locked, send PIN. (Unimplemented.)",
-      "InitialResponse": null,
-      "Implemented": true
+      "shorthand": "LOCKED",
+      "name": "RESPONSE_LOCKED",
+      "dec": 11,
+      "description": "Device is locked, send PIN. (Unimplemented.)",
+      "implemented": false,
+      "initial_response": null
+    },
+    "OK": {
+      "shorthand": "OK",
+      "name": "RESPONSE_OK",
+      "dec": 1,
+      "description": "Generic command ok/received.",
+      "implemented": true,
+      "initial_response": true
+    },
+    "ESC_SEQUENCE": {
+      "shorthand": "ESC_SEQUENCE",
+      "name": "RESPONSE_ESC_SEQUENCE",
+      "dec": 6,
+      "description": "Output escape sequence.",
+      "implemented": true,
+      "initial_response": false
     }
   },
   "responses_list": [
     {
-      "Shorthand": "OK",
-      "Name": "RESPONSE_OK",
-      "Dec": 1,
-      "Description": "Generic command ok/received.",
-      "InitialResponse": true,
-      "Implemented": true
+      "shorthand": "OK",
+      "name": "RESPONSE_OK",
+      "dec": 1,
+      "description": "Generic command ok/received.",
+      "implemented": true,
+      "initial_response": true
     },
     {
-      "Shorthand": "SEND_INPUT",
-      "Name": "RESPONSE_SEND_INPUT",
-      "Dec": 2,
-      "Description": "command received, send input.",
-      "InitialResponse": true,
-      "Implemented": true
+      "shorthand": "SEND_INPUT",
+      "name": "RESPONSE_SEND_INPUT",
+      "dec": 2,
+      "description": "command received, send input.",
+      "implemented": true,
+      "initial_response": true
     },
     {
-      "Shorthand": "RESPONSE_REJECTED",
-      "Name": "RESPONSE_RESPONSE_REJECTED",
-      "Dec": 3,
-      "Description": "The user rejected the request.",
-      "InitialResponse": false,
-      "Implemented": true
+      "shorthand": "RESPONSE_REJECTED",
+      "name": "RESPONSE_RESPONSE_REJECTED",
+      "dec": 3,
+      "description": "The user rejected the request.",
+      "implemented": true,
+      "initial_response": false
     },
     {
-      "Shorthand": "OUTPUT",
-      "Name": "RESPONSE_OUTPUT",
-      "Dec": 4,
-      "Description": "Start of output sequence.",
-      "InitialResponse": true,
-      "Implemented": true
+      "shorthand": "OUTPUT",
+      "name": "RESPONSE_OUTPUT",
+      "dec": 4,
+      "description": "Start of output sequence.",
+      "implemented": true,
+      "initial_response": true
     },
     {
-      "Shorthand": "OUTPUT_END",
-      "Name": "RESPONSE_OUTPUT_END",
-      "Dec": 5,
-      "Description": "End of output sequence",
-      "InitialResponse": false,
-      "Implemented": true
+      "shorthand": "OUTPUT_END",
+      "name": "RESPONSE_OUTPUT_END",
+      "dec": 5,
+      "description": "End of output sequence",
+      "implemented": true,
+      "initial_response": false
     },
     {
-      "Shorthand": "ESC_SEQUENCE",
-      "Name": "RESPONSE_ESC_SEQUENCE",
-      "Dec": 6,
-      "Description": "Output escape sequence.",
-      "InitialResponse": false,
-      "Implemented": true
+      "shorthand": "ESC_SEQUENCE",
+      "name": "RESPONSE_ESC_SEQUENCE",
+      "dec": 6,
+      "description": "Output escape sequence.",
+      "implemented": true,
+      "initial_response": false
     },
     {
-      "Shorthand": "WAIT_USER_CONFIRM",
-      "Name": "RESPONSE_WAIT_USER_CONFIRM",
-      "Dec": 10,
-      "Description": "The user is prompted for confirmation.",
-      "InitialResponse": true,
-      "Implemented": true
+      "shorthand": "WAIT_USER_CONFIRM",
+      "name": "RESPONSE_WAIT_USER_CONFIRM",
+      "dec": 10,
+      "description": "The user is prompted for confirmation.",
+      "implemented": true,
+      "initial_response": true
     },
     {
-      "Shorthand": "LOCKED",
-      "Name": "RESPONSE_LOCKED",
-      "Dec": 11,
-      "Description": "Device is locked, send PIN. (Unimplemented.)",
-      "InitialResponse": null,
-      "Implemented": true
-    }
-  ],
-  "error_responses": {
-    "UNKNOWN_COMMAND": {
-      "Name": "RESPONSE_ERROR_UNKNOWN_COMMAND",
-      "Dec": 255,
-      "Description": "The received command byte does not relate to any known command.",
-      "Implemented": true
-    },
-    "NOT_INITIALISED": {
-      "Name": "RESPONSE_ERROR_NOT_INITIALISED",
-      "Dec": 254,
-      "Description": "The Ryder is not initialised with a wallet.",
-      "Implemented": true
-    },
-    "MEMORY_ERROR": {
-      "Name": "RESPONSE_ERROR_MEMORY_ERROR",
-      "Dec": 253,
-      "Description": "The Ryder encountered a memory error while processing the command or input.",
-      "Implemented": true
-    },
-    "APP_DOMAIN_TOO_LONG": {
-      "Name": "RESPONSE_ERROR_APP_DOMAIN_TOO_LONG",
-      "Dec": 252,
-      "Description": "The provided app domain is too long to be processed. This error code precedes the memory error code.",
-      "Implemented": true
-    },
-    "APP_DOMAIN_INVALID": {
-      "Name": "RESPONSE_ERROR_APP_DOMAIN_INVALID",
-      "Dec": 251,
-      "Description": "The app domain does not start with `http://` or `https://`.",
-      "Implemented": true
-    },
-    "MNEMONIC_TOO_LONG": {
-      "Name": "RESPONSE_ERROR_MNEMONIC_TOO_LONG",
-      "Dec": 250,
-      "Description": "The provided mnemonic phrase is too long to be processed. This error code precedes the memory error code.",
-      "Implemented": true
-    },
-    "MNEMONIC_INVALID": {
-      "Name": "RESPONSE_ERROR_MNEMONIC_INVALID",
-      "Dec": 249,
-      "Description": "The mnemonic phrase has an invalid word count or the checksum failed.",
-      "Implemented": true
-    },
-    "GENERATE_MNEMONIC": {
-      "Name": "RESPONSE_ERROR_GENERATE_MNEMONIC",
-      "Dec": 248,
-      "Description": "The Ryder could not generate a mnemonic phrase of the desired strength.",
-      "Implemented": true
-    },
-    "INPUT_TIMEOUT": {
-      "Name": "RESPONSE_ERROR_INPUT_TIMEOUT",
-      "Dec": 247,
-      "Description": "The client waited too long with sending input. (Unimplemented.)",
-      "Implemented": false
-    },
-    "NOT_IMPLEMENTED": {
-      "Name": "RESPONSE_ERROR_NOT_IMPLEMENTED",
-      "Dec": 246,
-      "Description": "Prototype response code to indicate that the current feature is still being worked on.",
-      "Implemented": true
-    }
-  },
-  "error_responses_list": [
-    {
-      "Shorthand": "UNKNOWN_COMMAND",
-      "Name": "RESPONSE_ERROR_UNKNOWN_COMMAND",
-      "Dec": 255,
-      "Description": "The received command byte does not relate to any known command.",
-      "Implemented": true
-    },
-    {
-      "Shorthand": "NOT_INITIALISED",
-      "Name": "RESPONSE_ERROR_NOT_INITIALISED",
-      "Dec": 254,
-      "Description": "The Ryder is not initialised with a wallet.",
-      "Implemented": true
-    },
-    {
-      "Shorthand": "MEMORY_ERROR",
-      "Name": "RESPONSE_ERROR_MEMORY_ERROR",
-      "Dec": 253,
-      "Description": "The Ryder encountered a memory error while processing the command or input.",
-      "Implemented": true
-    },
-    {
-      "Shorthand": "APP_DOMAIN_TOO_LONG",
-      "Name": "RESPONSE_ERROR_APP_DOMAIN_TOO_LONG",
-      "Dec": 252,
-      "Description": "The provided app domain is too long to be processed. This error code precedes the memory error code.",
-      "Implemented": true
-    },
-    {
-      "Shorthand": "APP_DOMAIN_INVALID",
-      "Name": "RESPONSE_ERROR_APP_DOMAIN_INVALID",
-      "Dec": 251,
-      "Description": "The app domain does not start with `http://` or `https://`.",
-      "Implemented": true
-    },
-    {
-      "Shorthand": "MNEMONIC_TOO_LONG",
-      "Name": "RESPONSE_ERROR_MNEMONIC_TOO_LONG",
-      "Dec": 250,
-      "Description": "The provided mnemonic phrase is too long to be processed. This error code precedes the memory error code.",
-      "Implemented": true
-    },
-    {
-      "Shorthand": "MNEMONIC_INVALID",
-      "Name": "RESPONSE_ERROR_MNEMONIC_INVALID",
-      "Dec": 249,
-      "Description": "The mnemonic phrase has an invalid word count or the checksum failed.",
-      "Implemented": true
-    },
-    {
-      "Shorthand": "GENERATE_MNEMONIC",
-      "Name": "RESPONSE_ERROR_GENERATE_MNEMONIC",
-      "Dec": 248,
-      "Description": "The Ryder could not generate a mnemonic phrase of the desired strength.",
-      "Implemented": true
-    },
-    {
-      "Shorthand": "INPUT_TIMEOUT",
-      "Name": "RESPONSE_ERROR_INPUT_TIMEOUT",
-      "Dec": 247,
-      "Description": "The client waited too long with sending input. (Unimplemented.)",
-      "Implemented": false
-    },
-    {
-      "Shorthand": "NOT_IMPLEMENTED",
-      "Name": "RESPONSE_ERROR_NOT_IMPLEMENTED",
-      "Dec": 246,
-      "Description": "Prototype response code to indicate that the current feature is still being worked on.",
-      "Implemented": true
+      "shorthand": "LOCKED",
+      "name": "RESPONSE_LOCKED",
+      "dec": 11,
+      "description": "Device is locked, send PIN. (Unimplemented.)",
+      "implemented": false,
+      "initial_response": null
     }
   ]
 }

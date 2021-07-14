@@ -1,5 +1,7 @@
 use std::{
+    collections::HashMap,
     fs::File,
+    iter::FromIterator,
     path::{Path, PathBuf},
 };
 
@@ -12,9 +14,13 @@ trait FromCsv: Sized {
     fn from_csv<P: AsRef<Path>>(path: P) -> Vec<Self>;
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+trait ProtocolEntry: DeserializeOwned + Sized {
+    fn key(&self) -> String;
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 struct Response {
-    prefix: String,
+    shorthand: String,
     name: String,
     dec: u8,
     description: String,
@@ -25,18 +31,30 @@ struct Response {
     initial_response: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+impl ProtocolEntry for Response {
+    fn key(&self) -> String {
+        self.shorthand.to_owned()
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 struct ErrorResponse {
-    prefix: String,
+    shorthand: String,
     name: String,
     dec: u8,
     description: String,
     implemented: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+impl ProtocolEntry for ErrorResponse {
+    fn key(&self) -> String {
+        self.shorthand.to_owned()
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 struct Command {
-    prefix: String,
+    shorthand: String,
     name: String,
     dec: u8,
     description: String,
@@ -48,6 +66,12 @@ struct Command {
     send_input: Option<bool>,
     enabled: Option<bool>,
     temporary: bool,
+}
+
+impl ProtocolEntry for Command {
+    fn key(&self) -> String {
+        self.shorthand.to_owned()
+    }
 }
 
 impl<T> FromCsv for T
@@ -66,32 +90,75 @@ where
     }
 }
 
+struct ImplProto<T>(String, T)
+where
+    T: ProtocolEntry;
+
+impl<V: ProtocolEntry> From<V> for ImplProto<V> {
+    fn from(v: V) -> Self {
+        ImplProto(v.key(), v)
+    }
+}
+
+impl<V: ProtocolEntry> FromIterator<ImplProto<V>> for HashMap<String, V> {
+    fn from_iter<T>(iter: T) -> Self
+    where
+        T: IntoIterator<Item = ImplProto<V>>,
+    {
+        let mut commands: HashMap<String, V> = HashMap::new();
+
+        for ImplProto(key, value) in iter {
+            commands.insert(key, value);
+        }
+        commands
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 struct RyderProtocol {
-    commands: Vec<Command>,
-    errors: Vec<ErrorResponse>,
-    responses: Vec<Response>,
+    commands: HashMap<String, Command>,
+    commands_list: Vec<Command>,
+    errors: HashMap<String, ErrorResponse>,
+    errors_list: Vec<ErrorResponse>,
+    responses: HashMap<String, Response>,
+    responses_list: Vec<Response>,
 }
 
 impl RyderProtocol {
     #[throws]
     fn from_path(base_directory: PathBuf) -> Self {
-        let commands = FromCsv::from_csv(base_directory.join("commands.csv"))?;
-        let errors = FromCsv::from_csv(base_directory.join("error_responses.csv"))?;
-        let responses = FromCsv::from_csv(base_directory.join("responses.csv"))?;
+        let base_directory = base_directory.join("csv");
+
+        let commands_list = Command::from_csv(base_directory.join("commands.csv"))?;
+        let commands = commands_list.iter().cloned().map(ImplProto::from).collect();
+
+        let errors_list = FromCsv::from_csv(base_directory.join("error_responses.csv"))?;
+        let errors = errors_list.iter().cloned().map(ImplProto::from).collect();
+
+        let responses_list = FromCsv::from_csv(base_directory.join("responses.csv"))?;
+        let responses = responses_list
+            .iter()
+            .cloned()
+            .map(ImplProto::from)
+            .collect();
 
         Self {
             commands,
+            commands_list,
             errors,
+            errors_list,
             responses,
+            responses_list,
         }
     }
 }
 
 #[throws]
-fn run(base_directory: PathBuf) {
+fn run(version_number: &str) {
+    let base_directory: PathBuf = format!("../{}", &version_number).into();
     let protocol = RyderProtocol::from_path(base_directory.to_path_buf())?;
-    let path = base_directory.join("v.json");
+    let path = base_directory.join(format!("{}.json", &version_number));
+
     let mut f =
         File::create(&path).wrap_err_with(|| format!("Unable to create file {:?}", &path))?;
     serde_json::to_writer_pretty(&mut f, &protocol)?;
@@ -100,6 +167,7 @@ fn run(base_directory: PathBuf) {
 
 #[throws]
 fn main() {
-    // navigate to `protocol/csv/` and run `cargo run -- ../0.0.2/csv`
-    run(std::env::args_os().nth(1).unwrap().into())?;
+    // navigate to `protocol/csv/` and run `cargo run -- 0.0.2`
+    let version_number: String = std::env::args().nth(1).unwrap();
+    run(&version_number)?;
 }
